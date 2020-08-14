@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <a href="{{ url_for('index') }}">
+        <span class="glyphicon glyphicon-circle-arrow-left back_arrow"></span>
+        <span class="back_string">返回主页</span>
+    </a>
+    <h1 style="text-align: center">登录</h1>
+    <hr class="simple" color="#6f5499"/>
+    <div class="col-md-8 col-center-block">
+        {{ wtf.quick_form(form) }}
+        <hr class="simple" color="#6f5499"/>
+    </div>
+    <div class="col-md-6 col-center-block">
+        <table class="table table-no-boarder" style="text-align: center; font-size: 18px">
+            <tbody>
+            <tr>
+                <td>新用户？</td>
+                <td><a href="{{ url_for('register') }}">立即注册</a></td>
+            </tr>
+            <tr>
+                <td>忘记密码？</td>
+                <td><a href="{{ url_for('forget_password') }}">立即找回</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+
+

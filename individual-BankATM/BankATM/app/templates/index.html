@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <div class="jumbotron">
+        <h1>{{ current_user.name }} 您好</h1><br><br>
+        <p><strong>BankATM</strong> 为您服务！</p><br>
+        <p>
+            {% if current_user.is_anonymous %}
+                <strong>您还未登录，请先<a href="{{ url_for('login') }}">登录</a>！</strong>
+            {% endif %}
+        </p>
+    </div>
+{% endblock %}

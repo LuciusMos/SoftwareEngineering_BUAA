@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <a href="{{ url_for('user', bank_id=current_user.bank_id) }}">
+        <span class="glyphicon glyphicon-circle-arrow-left back_arrow"></span>
+        <span class="back_string">返回账户页</span>
+    </a>
+    <h1 class="text-center">姓名： <strong>{{ current_user.name }}</strong></h1>
+    <hr class="simple" color="#6f5499"/>
+    <div>
+        <table class="table table table-bordered" , style="text-align: center">
+
+            <tbody>
+            <tr>
+                <td>余额</td>
+                <td>￥ {{ current_user.balance }}</td>
+            </tr>
+            <tr>
+                <td>累计利息</td>
+                <td>￥ {{ current_user.interest }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr class="simple" color="#6f5499"/>
+
+    <div>
+        <table class="table  table-hover table-striped table-bordered" style="text-align: center">
+            <thead>
+            <tr>
+                <td style="width: 20px">流水号</td>
+                <td style="width: 100px">时间</td>
+                <td style="width: 50px">类型</td>
+                <td style="width: 50px">金额</td>
+                <td style="width: 50px">结余</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for operation in operations %}
+                <tr class="{% if operation.type == 1 %}table-success{% elif operation.type == 2 %}table-danger{% elif operation.type == 3 %}table-info{% endif %}">
+                    <td>{{ operation.id }}</td>
+                    <td>{{ operation.timestamp }}</td>
+                    <td>
+                        {% if operation.type == 1 %}
+                            存款 <span class="label label-success">1</span>
+                        {% elif operation.type == 2 %}
+                            取款 <span class="label label-danger">2</span>
+                        {% elif operation.type == 3 %}
+                            利息 <span class="label label-info">3</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ operation.money }}</td>
+                    <td>{{ operation.op_balance }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% if operations %}
+            <p style="text-align: center">
+                <span class="label label-success">1</span> 存款&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="label label-danger">2</span> 取款&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="label label-info">3</span> 利息
+            </p>
+        {% endif %}
+
+        <nav aria-label="...">
+            <ul class="pager">
+                {% if prev_url %}
+                    <li class="previous">
+                        <a href="{{ prev_url or '#' }}">
+                            <span aria-hidden="true">&larr;</span>上一页
+                        </a>
+                    </li>
+                {% endif %}
+                {% if next_url %}
+                    <li class="next">
+                        <a href="{{ next_url or '#' }}">
+                            下一页<span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+
+{% endblock %}
+
+

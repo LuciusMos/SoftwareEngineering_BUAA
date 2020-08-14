@@ -1,0 +1,11 @@
+scp root@114.115.129.146:/home/CitizenScience/backend/backend/recommend_system.py ./
+scp root@114.115.129.146:/home/CitizenScience/backend/backend/upload.py ./
+scp root@114.115.129.146:/home/CitizenScience/backend/backend/user.py ./
+scp root@114.115.129.146:/home/CitizenScience/backend/backend/init.py ./
+scp root@114.115.129.146:/home/CitizenScience/backend/backend/__init__.py ./
+scp root@114.115.129.146:/home/CitizenScience/backend/backend/homepage.py ./
+scp root@114.115.129.146:/home/CitizenScience/backend/backend/identity.py ./
+scp root@114.115.129.146:/home/CitizenScience/backend/backend/models.py ./
+scp root@114.115.129.146:/home/CitizenScience/backend/backend/project.py ./
+scp root@114.115.129.146:/home/CitizenScience/backend/backend/visualization.py ./
+scp root@114.115.129.146:/home/CitizenScience/backend/backend/app.py ./

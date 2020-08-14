@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <div class="jumbotron">
+        <a href="{{ url_for('index') }}">
+            <span class="glyphicon glyphicon-circle-arrow-left back_arrow"></span>
+            <span class="back_string">返回主页</span>
+        </a><br><br>
+        <h1>发生错误</h1><br><br>
+        <p>我们已收到您的错误信息</p>
+        <p>给您带来不便，敬请谅解</p>
+    </div>
+{% endblock %}

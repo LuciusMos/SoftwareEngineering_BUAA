@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <a href="{{ url_for('user', bank_id=current_user.bank_id) }}">
+        <span class="glyphicon glyphicon-circle-arrow-left back_arrow"></span>
+        <span class="back_string">返回账户页</span>
+    </a>
+    <h1 style="text-align: center">取款</h1>
+    <hr class="simple" color="#6f5499"/>
+    <div class="col-md-8 col-center-block">
+        {{ wtf.quick_form(form) }}
+        <hr class="simple" color="#6f5499"/>
+    </div>
+    <p style="font-size: 20px; text-align: center">我想<a href="{{ url_for('save_money') }}">存款</a></p>
+{% endblock %}
+

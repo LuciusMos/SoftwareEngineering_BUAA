@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<a href="{{ url_for('index') }}">
+    <span class="glyphicon glyphicon-circle-arrow-left back_arrow"></span>
+    <span class="back_string">返回主页</span>
+</a>
+<h1 class="text-center">姓名： <strong>{{ user.name }}</strong></h1>
+<hr class="simple" color="#6f5499" />
+<div class="row">
+    <div class="col-md-6">
+        <a href="{{ url_for('save_money') }}" class="btn btn-primary btn-lg col-center-block" role="button">
+            <span class="glyphicon glyphicon-save"></span> 我要存款</a>
+    </div>
+    <div class="col-md-6">
+        <a href="{{ url_for('withdraw_money') }}" class="btn btn-primary btn-lg col-center-block" role="button">
+            <span class="glyphicon glyphicon-open"></span> 我要取款</a>
+    </div>
+
+</div>
+<hr class="simple" color="#6f5499" />
+<div>
+    <table class="table table-striped" style="text-align: center">
+        <tbody>
+            <tr>
+                <td>身份证号</td>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <td>手机号码</td>
+                <td>{{ user.phone_number }}</td>
+            </tr>
+            <tr>
+                <td>余额</td>
+                <td>￥ {{ user.balance }}</td>
+            </tr>
+            <tr>
+                <td>累计利息</td>
+                <td>￥ {{ user.interest }}</td>
+            </tr>
+            <tr>
+                <td>流水记录</td>
+                <td><a href="{{ url_for('user_operations', page=1) }}">查看流水记录</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<hr class="simple" color="#6f5499" />
+<div class="row">
+    <div class="col-md-6">
+        <a href="{{ url_for('edit_info') }}" class="btn btn-default col-md-6 col-center-block" role="button">编辑个人信息</a>
+    </div>
+    <div class="col-md-6">
+        <a href="{{ url_for('reset_password') }}" class="btn btn-default col-md-6 col-center-block"
+            role="button">修改密码</a>
+    </div>
+</div>
+{% endblock %}

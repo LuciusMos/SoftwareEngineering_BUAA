@@ -1,0 +1,104 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}欢迎来到BankATM{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="col-md-6 col-center-block">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{ url_for('index') }}">
+                        <span class="glyphicon glyphicon-home"></span> BankATM</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if current_user.is_anonymous %}
+                            <li><a href="{{ url_for('register') }}">
+                                <span class="glyphicon glyphicon-edit"></span> 注册</a></li>
+                            <li><a href="{{ url_for('login') }}">
+                                <span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                        {% else %}
+                            <li><a href="{{ url_for('user', bank_id=current_user.bank_id) }}">
+                                <span class="glyphicon glyphicon-user"></span> 账户</a></li>
+                            <!--
+                            <li class="dropdown">
+                                <a href="{{ url_for('user', bank_id=current_user.bank_id) }}" class="dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-user"></span> 账户<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ url_for('save_money') }}">存款</a></li>
+                                    <li><a href="{{ url_for('withdraw_money') }}">取款</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="{{ url_for('edit_info') }}">编辑个人信息</a></li>
+                                    <li><a href="{{ url_for('reset_password') }}">修改密码</a></li>
+                                </ul>
+                            </li>
+                            -->
+                            <li><a href="{{ url_for('logout') }}">
+                                <span class="glyphicon glyphicon-log-out"></span> 登出</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-md-6 col-center-block">
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        {% if category =='error' %}
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>{{ message }}</strong>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <span tyle="text-align: center"><strong s>{{ message }}</strong></span>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                {% endif %}
+            {% endwith %}
+            {# application content needs to be provided in the app_content block #}
+            {% block app_content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <style>
+        .col-center-block {
+            float: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .back_arrow, .back_string {
+            font-size: 20px
+        }
+
+        .table-no-boarder > tbody > tr > td {
+            border: white 0px solid;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        function float2MoneyFormat(floatNum) {
+            return floatNum.toFixed(2);
+        }
+    </script>
+{% endblock %}
+
+
+
