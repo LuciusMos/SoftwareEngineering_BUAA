@@ -214,9 +214,9 @@ def forget_password():
         user.verification_expire_time = datetime.datetime.now() + datetime.timedelta(minutes=5)
         db.session.commit()
 
-        password = "ykzfihjpctmpbfgd"
+        password = "some_password"
         email_host = "smtp.qq.com"
-        sender = "994732432@qq.com"
+        sender = "some_email_address"
         receiver = [user_email]
         content = """
         <!DOCTYPE html>
